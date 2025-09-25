@@ -1,0 +1,25 @@
+{
+  "name": "property-management-cli",
+  "version": "1.0.0",
+  "description": "A CLI app for managing properties and tenants",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "tsc && node dist/main.js"
+  },
+  "bin": {
+    "property-cli": "./dist/main.js"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "csv-parser": "^3.0.0",
+    "dayjs": "^1.11.18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
