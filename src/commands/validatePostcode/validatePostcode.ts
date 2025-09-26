@@ -16,8 +16,6 @@ export const validatePostcode = async (properties: Property[]) => {
     .map((r: any) => r.query);
 
   const allInvalids = [...invalid, ...(invalidPostcodes || [])];
-  console.log("allInvalids", allInvalids);
-  console.log("properties", properties);
   return allInvalids.map(
     (inv) => properties.find((p) => p.postcode === inv)?.id
   );

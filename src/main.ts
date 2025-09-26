@@ -24,9 +24,6 @@ class InteractiveCLI {
   }
 
   async start(): Promise<void> {
-    console.log(
-      '\nInteractive mode started. Type "help" for commands or "exit" to quit.\n'
-    );
     this.rl.prompt();
 
     this.rl.on("line", async (input: string) => {
@@ -92,7 +89,7 @@ class InteractiveCLI {
   }
 
   private async handlePropertyStatus(args: string[]) {
-    const [ propertyId] = args;
+    const [propertyId] = args;
     const property = this.properties.find((p) => p.id === propertyId);
     if (!property) {
       console.error("Property not found with the given ID.", propertyId);
@@ -115,7 +112,7 @@ class InteractiveCLI {
     }
   }
   private handleMonthlyRent(args: string[]) {
-    const [penceOrPound,propertyId] = args;
+    const [penceOrPound, propertyId] = args;
     if (penceOrPound !== "-pence" && penceOrPound !== "-pound") {
       console.error(
         'First argument must be "-pence" or "-pound" to indicate if the output should be in pence.'
@@ -152,7 +149,13 @@ class InteractiveCLI {
       return;
     }
 
-    getAverageRent(region, this.properties);
+    try {
+      const averageRent = getAverageRent(region, this.properties);
+      console.log("Average rent in region", region, "is £" + averageRent);
+    } catch (error) {
+      console.error("Error calculating average rent:", error);
+      return;
+    }
   }
 }
 
